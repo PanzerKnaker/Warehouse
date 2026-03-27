@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище WarehouseModelContainer" CdmEntityContainer="WarehouseEntities3">
+    <EntitySetMapping Name="Arrivals">
+      <EntityTypeMapping TypeName="WarehouseModel.Arrivals">
+        <MappingFragment StoreEntitySet="Arrivals">
+          <ScalarProperty Name="NumberArrival" ColumnName="NumberArrival" />
+          <ScalarProperty Name="ArrivalAccepted" ColumnName="ArrivalAccepted" />
+          <ScalarProperty Name="Suplier" ColumnName="Suplier" />
+          <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BuildMaterials">
+      <EntityTypeMapping TypeName="WarehouseModel.BuildMaterials">
+        <MappingFragment StoreEntitySet="BuildMaterials">
+          <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+          <ScalarProperty Name="NameItem" ColumnName="NameItem" />
+          <ScalarProperty Name="IDMeasure" ColumnName="IDMeasure" />
+          <ScalarProperty Name="OnWarehouse" ColumnName="OnWarehouse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="WarehouseModel.Clients">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+          <ScalarProperty Name="NameClient" ColumnName="NameClient" />
+          <ScalarProperty Name="ReferToClient" ColumnName="ReferToClient" />
+          <ScalarProperty Name="PostClient" ColumnName="PostClient" />
+          <ScalarProperty Name="AdressClient" ColumnName="AdressClient" />
+          <ScalarProperty Name="PhoneClient" ColumnName="PhoneClient" />
+          <ScalarProperty Name="FaxClient" ColumnName="FaxClient" />
+          <ScalarProperty Name="EmailClient" ColumnName="EmailClient" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConsistArrival">
+      <EntityTypeMapping TypeName="WarehouseModel.ConsistArrival">
+        <MappingFragment StoreEntitySet="ConsistArrival">
+          <ScalarProperty Name="IDConsArrivals" ColumnName="IDConsArrivals" />
+          <ScalarProperty Name="NumberArrival" ColumnName="NumberArrival" />
+          <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+          <ScalarProperty Name="AmountArr" ColumnName="AmountArr" />
+          <ScalarProperty Name="VolumeArr" ColumnName="VolumeArr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="WarehouseModel.Employees">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="IDEmployee" ColumnName="IDEmployee" />
+          <ScalarProperty Name="SurnameEmp" ColumnName="SurnameEmp" />
+          <ScalarProperty Name="NameEmp" ColumnName="NameEmp" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="PostEmp" ColumnName="PostEmp" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="AdressEmp" ColumnName="AdressEmp" />
+          <ScalarProperty Name="PhoneEmp" ColumnName="PhoneEmp" />
+          <ScalarProperty Name="EmailEmp" ColumnName="EmailEmp" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ordered">
+      <EntityTypeMapping TypeName="WarehouseModel.Ordered">
+        <MappingFragment StoreEntitySet="Ordered">
+          <ScalarProperty Name="IDOrdered" ColumnName="IDOrdered" />
+          <ScalarProperty Name="IDOrder" ColumnName="IDOrder" />
+          <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+          <ScalarProperty Name="AmountOrd" ColumnName="AmountOrd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="WarehouseModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="IDOrder" ColumnName="IDOrder" />
+          <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+          <ScalarProperty Name="IDEmloyee" ColumnName="IDEmloyee" />
+          <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
+          <ScalarProperty Name="RecipientName" ColumnName="RecipientName" />
+          <ScalarProperty Name="RecipientAdress" ColumnName="RecipientAdress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supliers">
+      <EntityTypeMapping TypeName="WarehouseModel.Supliers">
+        <MappingFragment StoreEntitySet="Supliers">
+          <ScalarProperty Name="IDSuplier" ColumnName="IDSuplier" />
+          <ScalarProperty Name="NameSup" ColumnName="NameSup" />
+          <ScalarProperty Name="ReferTo" ColumnName="ReferTo" />
+          <ScalarProperty Name="Post" ColumnName="Post" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="EMail" ColumnName="EMail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnitToMeasure">
+      <EntityTypeMapping TypeName="WarehouseModel.UnitToMeasure">
+        <MappingFragment StoreEntitySet="UnitToMeasure">
+          <ScalarProperty Name="IDMeasure" ColumnName="IDMeasure" />
+          <ScalarProperty Name="NameMeasure" ColumnName="NameMeasure" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
