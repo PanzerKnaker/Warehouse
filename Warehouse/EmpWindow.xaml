@@ -1,0 +1,114 @@
+﻿<Window x:Class="Warehouse2.EmpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Warehouse2"
+        mc:Ignorable="d"
+        Title="Окно сотрудников" Height="594" Width="1500" ResizeMode="NoResize">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF5F4D11" Offset="1"/>
+            <GradientStop Color="#FFECC542"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="106*"/>
+            <ColumnDefinition Width="1387*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="DGEmp" HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="1016" AutoGenerateColumns="False"  Grid.ColumnSpan="2" SelectionChanged="DGEmp_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding SurnameEmp}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding NameEmp}"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Lastname}"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding PostEmp}"/>
+                <DataGridTextColumn Header="Дата Рождения" Binding="{Binding BirthDate}"/>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding AdressEmp}"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneEmp}"/>
+                <DataGridTextColumn Header="Электронная почта" Binding="{Binding EmailEmp}"/>
+                <DataGridTextColumn Header="Логин" Binding="{Binding Login}"/>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding Password}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TabControl HorizontalAlignment="Left" Height="566" Margin="910.5,0,0,-3" VerticalAlignment="Top" Width="476" Grid.Column="1">
+            <TabItem Header="Добавить" Margin="-2,-2,-100,-14" FontFamily="Arial" FontSize="16">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FFC1C1C1" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Margin="-18,-20,0,-5">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF5F4D11" Offset="1"/>
+                            <GradientStop Color="#FFECC542" Offset="0.12"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <TextBox x:Name="TBSurnameEmp" HorizontalAlignment="Left" Height="23" Margin="244,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBNameEmp" HorizontalAlignment="Left" Height="24" Margin="245,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBLastnameEmp" HorizontalAlignment="Left" Height="24" Margin="244,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBPostEmp" HorizontalAlignment="Left" Height="22" Margin="244,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBAdressEmp" HorizontalAlignment="Left" Height="23" Margin="245,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBPhoneEmp" HorizontalAlignment="Left" Height="23" Margin="245,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <Label Content="Фамилия" HorizontalAlignment="Left" Margin="30,72,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Имя" HorizontalAlignment="Left" Margin="30,103,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Отчество" HorizontalAlignment="Left" Margin="30,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.323,0.732" FontSize="18"/>
+                    <Label Content="Должность" HorizontalAlignment="Left" Margin="30,165,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Дата Рождения" HorizontalAlignment="Left" Margin="28,196,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Адрес" HorizontalAlignment="Left" Margin="30,232,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Телефон" HorizontalAlignment="Left" Margin="30,263,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Button x:Name="BtEmpAdd" Content="Добавить запись" HorizontalAlignment="Left" Margin="173,456,0,0" VerticalAlignment="Top" Width="157" Height="39" FontSize="18" Background="#FFBDB7B7" Click="BtEmpAdd_Click"/>
+                    <TextBox x:Name="TBEmailEmp" HorizontalAlignment="Left" Height="22" Margin="245,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <Label Content="Электронная почта" HorizontalAlignment="Left" Margin="28,294,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <TextBox x:Name="TBPassEmp" HorizontalAlignment="Left" Height="22" Margin="244,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <Label Content="Пароль" HorizontalAlignment="Left" Margin="28,356,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <TextBox x:Name="TBLoginEmp" HorizontalAlignment="Left" Height="22" Margin="244,329,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <Label Content="Логин" HorizontalAlignment="Left" Margin="28,325,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <DatePicker x:Name="DPBirthEmp" HorizontalAlignment="Left" Margin="245,199,0,0" VerticalAlignment="Top" Width="198" Height="28" FontSize="20"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Изменить" Margin="190,0,-282,-16" FontSize="16">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF9B9B9B" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Margin="-18,-25,-3,-2">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF5F4D11" Offset="1"/>
+                            <GradientStop Color="#FFECC542" Offset="0.12"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Button x:Name="BTChangeEmp" Content="Изменить запись" HorizontalAlignment="Left" Margin="48,464,0,0" VerticalAlignment="Top" Width="182" Height="47" FontFamily="Arial" FontSize="20" Background="#FFBBBBBB" Click="BTChangeEmp_Click" />
+                    <Button x:Name="TbEmpDel" Content="Удалить запись" HorizontalAlignment="Left" Margin="272,464,0,0" VerticalAlignment="Top" Width="172" Height="47" Background="#FFB0B0B0" FontFamily="Arial" FontSize="20" Click="TbEmpDel_Click" />
+                    <TextBox x:Name="TBSurnameEdEmp" HorizontalAlignment="Left" Height="23" Margin="244,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBNameEmpEd" HorizontalAlignment="Left" Height="24" Margin="245,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBLastnameEmpEd" HorizontalAlignment="Left" Height="24" Margin="244,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBPostEmpEd" HorizontalAlignment="Left" Height="22" Margin="244,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBAdressEmpEd" HorizontalAlignment="Left" Height="23" Margin="245,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBPhoneEmpEd" HorizontalAlignment="Left" Height="23" Margin="245,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <Label Content="Фамилия" HorizontalAlignment="Left" Margin="30,72,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Имя" HorizontalAlignment="Left" Margin="30,103,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Отчество" HorizontalAlignment="Left" Margin="30,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.323,0.732" FontSize="18"/>
+                    <Label Content="Должность" HorizontalAlignment="Left" Margin="30,165,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Дата Рождения" HorizontalAlignment="Left" Margin="28,196,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Адрес" HorizontalAlignment="Left" Margin="30,232,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Телефон" HorizontalAlignment="Left" Margin="30,263,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <TextBox x:Name="TBEmailEmpEd" HorizontalAlignment="Left" Height="22" Margin="245,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <Label Content="Электронная почта" HorizontalAlignment="Left" Margin="28,294,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <TextBox x:Name="TBPassEmpEd" HorizontalAlignment="Left" Height="22" Margin="244,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <Label Content="Пароль" HorizontalAlignment="Left" Margin="28,356,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <TextBox x:Name="TBLoginEmpEd" HorizontalAlignment="Left" Height="22" Margin="244,329,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <Label Content="Логин" HorizontalAlignment="Left" Margin="28,325,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <DatePicker x:Name="DPBirthDateEd" HorizontalAlignment="Left" Margin="245,196,0,0" VerticalAlignment="Top" Width="198" Height="34" FontSize="20"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="BTBackEmp" Content="Назад" HorizontalAlignment="Left" Margin="28,524,0,0" VerticalAlignment="Top" Width="135" Height="32" FontFamily="Arial" FontSize="20" Background="#FFB9B7B7"  Grid.ColumnSpan="2" Click="BTBackEmp_Click"/>
+
+    </Grid>
+</Window>

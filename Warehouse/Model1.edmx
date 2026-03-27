@@ -1,0 +1,673 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище WarehouseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Arrivals">
+          <Key>
+            <PropertyRef Name="NumberArrival" />
+          </Key>
+          <Property Name="NumberArrival" Type="int" Nullable="false" />
+          <Property Name="ArrivalAccepted" Type="int" />
+          <Property Name="Suplier" Type="int" Nullable="false" />
+          <Property Name="ArrivalDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BuildMaterials">
+          <Key>
+            <PropertyRef Name="ItemNumber" />
+          </Key>
+          <Property Name="ItemNumber" Type="int" Nullable="false" />
+          <Property Name="Mark" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameItem" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="IDMeasure" Type="int" Nullable="false" />
+          <Property Name="OnWarehouse" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="IDClient" />
+          </Key>
+          <Property Name="IDClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameClient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReferToClient" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="PostClient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdressClient" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneClient" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="FaxClient" Type="nvarchar" MaxLength="15" />
+          <Property Name="EmailClient" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ConsistArrival">
+          <Key>
+            <PropertyRef Name="IDConsArrivals" />
+          </Key>
+          <Property Name="IDConsArrivals" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberArrival" Type="int" Nullable="false" />
+          <Property Name="ItemNumber" Type="int" Nullable="false" />
+          <Property Name="AmountArr" Type="int" Nullable="false" />
+          <Property Name="VolumeArr" Type="float" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="IDEmployee" />
+          </Key>
+          <Property Name="IDEmployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurnameEmp" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameEmp" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostEmp" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="AdressEmp" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneEmp" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="EmailEmp" Type="nvarchar" MaxLength="50" />
+          <Property Name="Login" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ordered">
+          <Key>
+            <PropertyRef Name="IDOrdered" />
+          </Key>
+          <Property Name="IDOrdered" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDOrder" Type="int" Nullable="false" />
+          <Property Name="ItemNumber" Type="int" Nullable="false" />
+          <Property Name="AmountOrd" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="IDOrder" />
+          </Key>
+          <Property Name="IDOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDClient" Type="int" Nullable="false" />
+          <Property Name="IDEmloyee" Type="int" Nullable="false" />
+          <Property Name="ShippingDate" Type="date" Nullable="false" />
+          <Property Name="RecipientName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecipientAdress" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supliers">
+          <Key>
+            <PropertyRef Name="IDSuplier" />
+          </Key>
+          <Property Name="IDSuplier" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameSup" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReferTo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Post" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="20" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnitToMeasure">
+          <Key>
+            <PropertyRef Name="IDMeasure" />
+          </Key>
+          <Property Name="IDMeasure" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameMeasure" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Arrivals_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Arrivals" Type="Self.Arrivals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="IDEmployee" />
+            </Principal>
+            <Dependent Role="Arrivals">
+              <PropertyRef Name="ArrivalAccepted" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Arrivals_Supliers">
+          <End Role="Supliers" Type="Self.Supliers" Multiplicity="1" />
+          <End Role="Arrivals" Type="Self.Arrivals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supliers">
+              <PropertyRef Name="IDSuplier" />
+            </Principal>
+            <Dependent Role="Arrivals">
+              <PropertyRef Name="Suplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildMaterials_UnitToMeasure">
+          <End Role="UnitToMeasure" Type="Self.UnitToMeasure" Multiplicity="1" />
+          <End Role="BuildMaterials" Type="Self.BuildMaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitToMeasure">
+              <PropertyRef Name="IDMeasure" />
+            </Principal>
+            <Dependent Role="BuildMaterials">
+              <PropertyRef Name="IDMeasure" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsistArrival_Arrivals">
+          <End Role="Arrivals" Type="Self.Arrivals" Multiplicity="1" />
+          <End Role="ConsistArrival" Type="Self.ConsistArrival" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arrivals">
+              <PropertyRef Name="NumberArrival" />
+            </Principal>
+            <Dependent Role="ConsistArrival">
+              <PropertyRef Name="NumberArrival" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsistArrival_BuildMaterials">
+          <End Role="BuildMaterials" Type="Self.BuildMaterials" Multiplicity="1" />
+          <End Role="ConsistArrival" Type="Self.ConsistArrival" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuildMaterials">
+              <PropertyRef Name="ItemNumber" />
+            </Principal>
+            <Dependent Role="ConsistArrival">
+              <PropertyRef Name="ItemNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ordered_BuildMaterials1">
+          <End Role="BuildMaterials" Type="Self.BuildMaterials" Multiplicity="1" />
+          <End Role="Ordered" Type="Self.Ordered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuildMaterials">
+              <PropertyRef Name="ItemNumber" />
+            </Principal>
+            <Dependent Role="Ordered">
+              <PropertyRef Name="ItemNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ordered_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Ordered" Type="Self.Ordered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IDOrder" />
+            </Principal>
+            <Dependent Role="Ordered">
+              <PropertyRef Name="IDOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="IDClient" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IDClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="IDEmployee" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IDEmloyee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище WarehouseModelContainer">
+          <EntitySet Name="Arrivals" EntityType="Self.Arrivals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuildMaterials" EntityType="Self.BuildMaterials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConsistArrival" EntityType="Self.ConsistArrival" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ordered" EntityType="Self.Ordered" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supliers" EntityType="Self.Supliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitToMeasure" EntityType="Self.UnitToMeasure" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Arrivals_Employees" Association="Self.FK_Arrivals_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Arrivals" EntitySet="Arrivals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Arrivals_Supliers" Association="Self.FK_Arrivals_Supliers">
+            <End Role="Supliers" EntitySet="Supliers" />
+            <End Role="Arrivals" EntitySet="Arrivals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildMaterials_UnitToMeasure" Association="Self.FK_BuildMaterials_UnitToMeasure">
+            <End Role="UnitToMeasure" EntitySet="UnitToMeasure" />
+            <End Role="BuildMaterials" EntitySet="BuildMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsistArrival_Arrivals" Association="Self.FK_ConsistArrival_Arrivals">
+            <End Role="Arrivals" EntitySet="Arrivals" />
+            <End Role="ConsistArrival" EntitySet="ConsistArrival" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsistArrival_BuildMaterials" Association="Self.FK_ConsistArrival_BuildMaterials">
+            <End Role="BuildMaterials" EntitySet="BuildMaterials" />
+            <End Role="ConsistArrival" EntitySet="ConsistArrival" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ordered_BuildMaterials1" Association="Self.FK_Ordered_BuildMaterials1">
+            <End Role="BuildMaterials" EntitySet="BuildMaterials" />
+            <End Role="Ordered" EntitySet="Ordered" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ordered_Orders" Association="Self.FK_Ordered_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Ordered" EntitySet="Ordered" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Clients" Association="Self.FK_Orders_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Employees" Association="Self.FK_Orders_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WarehouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Arrivals">
+          <Key>
+            <PropertyRef Name="NumberArrival" />
+          </Key>
+          <Property Name="NumberArrival" Type="Int32" Nullable="false" />
+          <Property Name="ArrivalAccepted" Type="Int32" />
+          <Property Name="Suplier" Type="Int32" Nullable="false" />
+          <Property Name="ArrivalDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Arrivals_Employees" FromRole="Arrivals" ToRole="Employees" />
+          <NavigationProperty Name="Supliers" Relationship="Self.FK_Arrivals_Supliers" FromRole="Arrivals" ToRole="Supliers" />
+          <NavigationProperty Name="ConsistArrival" Relationship="Self.FK_ConsistArrival_Arrivals" FromRole="Arrivals" ToRole="ConsistArrival" />
+        </EntityType>
+        <EntityType Name="BuildMaterials">
+          <Key>
+            <PropertyRef Name="ItemNumber" />
+          </Key>
+          <Property Name="ItemNumber" Type="Int32" Nullable="false" />
+          <Property Name="Mark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameItem" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDMeasure" Type="Int32" Nullable="false" />
+          <Property Name="OnWarehouse" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UnitToMeasure" Relationship="Self.FK_BuildMaterials_UnitToMeasure" FromRole="BuildMaterials" ToRole="UnitToMeasure" />
+          <NavigationProperty Name="ConsistArrival" Relationship="Self.FK_ConsistArrival_BuildMaterials" FromRole="BuildMaterials" ToRole="ConsistArrival" />
+          <NavigationProperty Name="Ordered" Relationship="Self.FK_Ordered_BuildMaterials1" FromRole="BuildMaterials" ToRole="Ordered" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="IDClient" />
+          </Key>
+          <Property Name="IDClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReferToClient" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdressClient" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneClient" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FaxClient" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="EmailClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Clients" FromRole="Clients" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="ConsistArrival">
+          <Key>
+            <PropertyRef Name="IDConsArrivals" />
+          </Key>
+          <Property Name="IDConsArrivals" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberArrival" Type="Int32" Nullable="false" />
+          <Property Name="ItemNumber" Type="Int32" Nullable="false" />
+          <Property Name="AmountArr" Type="Int32" Nullable="false" />
+          <Property Name="VolumeArr" Type="Double" />
+          <NavigationProperty Name="Arrivals" Relationship="Self.FK_ConsistArrival_Arrivals" FromRole="ConsistArrival" ToRole="Arrivals" />
+          <NavigationProperty Name="BuildMaterials" Relationship="Self.FK_ConsistArrival_BuildMaterials" FromRole="ConsistArrival" ToRole="BuildMaterials" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="IDEmployee" />
+          </Key>
+          <Property Name="IDEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurnameEmp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameEmp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostEmp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AdressEmp" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneEmp" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailEmp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Arrivals" Relationship="Self.FK_Arrivals_Employees" FromRole="Employees" ToRole="Arrivals" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Employees" FromRole="Employees" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Ordered">
+          <Key>
+            <PropertyRef Name="IDOrdered" />
+          </Key>
+          <Property Name="IDOrdered" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDOrder" Type="Int32" Nullable="false" />
+          <Property Name="ItemNumber" Type="Int32" Nullable="false" />
+          <Property Name="AmountOrd" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BuildMaterials" Relationship="Self.FK_Ordered_BuildMaterials1" FromRole="Ordered" ToRole="BuildMaterials" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Ordered_Orders" FromRole="Ordered" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="IDOrder" />
+          </Key>
+          <Property Name="IDOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDClient" Type="Int32" Nullable="false" />
+          <Property Name="IDEmloyee" Type="Int32" Nullable="false" />
+          <Property Name="ShippingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RecipientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecipientAdress" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Orders_Clients" FromRole="Orders" ToRole="Clients" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Orders_Employees" FromRole="Orders" ToRole="Employees" />
+          <NavigationProperty Name="Ordered" Relationship="Self.FK_Ordered_Orders" FromRole="Orders" ToRole="Ordered" />
+        </EntityType>
+        <EntityType Name="Supliers">
+          <Key>
+            <PropertyRef Name="IDSuplier" />
+          </Key>
+          <Property Name="IDSuplier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameSup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReferTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Post" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Arrivals" Relationship="Self.FK_Arrivals_Supliers" FromRole="Supliers" ToRole="Arrivals" />
+        </EntityType>
+        <EntityType Name="UnitToMeasure">
+          <Key>
+            <PropertyRef Name="IDMeasure" />
+          </Key>
+          <Property Name="IDMeasure" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameMeasure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BuildMaterials" Relationship="Self.FK_BuildMaterials_UnitToMeasure" FromRole="UnitToMeasure" ToRole="BuildMaterials" />
+        </EntityType>
+        <Association Name="FK_Arrivals_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Arrivals" Type="Self.Arrivals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="IDEmployee" />
+            </Principal>
+            <Dependent Role="Arrivals">
+              <PropertyRef Name="ArrivalAccepted" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Arrivals_Supliers">
+          <End Role="Supliers" Type="Self.Supliers" Multiplicity="1" />
+          <End Role="Arrivals" Type="Self.Arrivals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supliers">
+              <PropertyRef Name="IDSuplier" />
+            </Principal>
+            <Dependent Role="Arrivals">
+              <PropertyRef Name="Suplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsistArrival_Arrivals">
+          <End Role="Arrivals" Type="Self.Arrivals" Multiplicity="1" />
+          <End Role="ConsistArrival" Type="Self.ConsistArrival" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arrivals">
+              <PropertyRef Name="NumberArrival" />
+            </Principal>
+            <Dependent Role="ConsistArrival">
+              <PropertyRef Name="NumberArrival" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildMaterials_UnitToMeasure">
+          <End Role="UnitToMeasure" Type="Self.UnitToMeasure" Multiplicity="1" />
+          <End Role="BuildMaterials" Type="Self.BuildMaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitToMeasure">
+              <PropertyRef Name="IDMeasure" />
+            </Principal>
+            <Dependent Role="BuildMaterials">
+              <PropertyRef Name="IDMeasure" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsistArrival_BuildMaterials">
+          <End Role="BuildMaterials" Type="Self.BuildMaterials" Multiplicity="1" />
+          <End Role="ConsistArrival" Type="Self.ConsistArrival" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuildMaterials">
+              <PropertyRef Name="ItemNumber" />
+            </Principal>
+            <Dependent Role="ConsistArrival">
+              <PropertyRef Name="ItemNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ordered_BuildMaterials1">
+          <End Role="BuildMaterials" Type="Self.BuildMaterials" Multiplicity="1" />
+          <End Role="Ordered" Type="Self.Ordered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuildMaterials">
+              <PropertyRef Name="ItemNumber" />
+            </Principal>
+            <Dependent Role="Ordered">
+              <PropertyRef Name="ItemNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="IDClient" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IDClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="IDEmployee" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IDEmloyee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ordered_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Ordered" Type="Self.Ordered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IDOrder" />
+            </Principal>
+            <Dependent Role="Ordered">
+              <PropertyRef Name="IDOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WarehouseEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Arrivals" EntityType="Self.Arrivals" />
+          <EntitySet Name="BuildMaterials" EntityType="Self.BuildMaterials" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="ConsistArrival" EntityType="Self.ConsistArrival" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Ordered" EntityType="Self.Ordered" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Supliers" EntityType="Self.Supliers" />
+          <EntitySet Name="UnitToMeasure" EntityType="Self.UnitToMeasure" />
+          <AssociationSet Name="FK_Arrivals_Employees" Association="Self.FK_Arrivals_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Arrivals" EntitySet="Arrivals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Arrivals_Supliers" Association="Self.FK_Arrivals_Supliers">
+            <End Role="Supliers" EntitySet="Supliers" />
+            <End Role="Arrivals" EntitySet="Arrivals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsistArrival_Arrivals" Association="Self.FK_ConsistArrival_Arrivals">
+            <End Role="Arrivals" EntitySet="Arrivals" />
+            <End Role="ConsistArrival" EntitySet="ConsistArrival" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildMaterials_UnitToMeasure" Association="Self.FK_BuildMaterials_UnitToMeasure">
+            <End Role="UnitToMeasure" EntitySet="UnitToMeasure" />
+            <End Role="BuildMaterials" EntitySet="BuildMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsistArrival_BuildMaterials" Association="Self.FK_ConsistArrival_BuildMaterials">
+            <End Role="BuildMaterials" EntitySet="BuildMaterials" />
+            <End Role="ConsistArrival" EntitySet="ConsistArrival" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ordered_BuildMaterials1" Association="Self.FK_Ordered_BuildMaterials1">
+            <End Role="BuildMaterials" EntitySet="BuildMaterials" />
+            <End Role="Ordered" EntitySet="Ordered" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Clients" Association="Self.FK_Orders_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Employees" Association="Self.FK_Orders_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ordered_Orders" Association="Self.FK_Ordered_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Ordered" EntitySet="Ordered" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище WarehouseModelContainer" CdmEntityContainer="WarehouseEntities3">
+          <EntitySetMapping Name="Arrivals">
+            <EntityTypeMapping TypeName="WarehouseModel.Arrivals">
+              <MappingFragment StoreEntitySet="Arrivals">
+                <ScalarProperty Name="NumberArrival" ColumnName="NumberArrival" />
+                <ScalarProperty Name="ArrivalAccepted" ColumnName="ArrivalAccepted" />
+                <ScalarProperty Name="Suplier" ColumnName="Suplier" />
+                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuildMaterials">
+            <EntityTypeMapping TypeName="WarehouseModel.BuildMaterials">
+              <MappingFragment StoreEntitySet="BuildMaterials">
+                <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="NameItem" ColumnName="NameItem" />
+                <ScalarProperty Name="IDMeasure" ColumnName="IDMeasure" />
+                <ScalarProperty Name="OnWarehouse" ColumnName="OnWarehouse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="WarehouseModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+                <ScalarProperty Name="NameClient" ColumnName="NameClient" />
+                <ScalarProperty Name="ReferToClient" ColumnName="ReferToClient" />
+                <ScalarProperty Name="PostClient" ColumnName="PostClient" />
+                <ScalarProperty Name="AdressClient" ColumnName="AdressClient" />
+                <ScalarProperty Name="PhoneClient" ColumnName="PhoneClient" />
+                <ScalarProperty Name="FaxClient" ColumnName="FaxClient" />
+                <ScalarProperty Name="EmailClient" ColumnName="EmailClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConsistArrival">
+            <EntityTypeMapping TypeName="WarehouseModel.ConsistArrival">
+              <MappingFragment StoreEntitySet="ConsistArrival">
+                <ScalarProperty Name="IDConsArrivals" ColumnName="IDConsArrivals" />
+                <ScalarProperty Name="NumberArrival" ColumnName="NumberArrival" />
+                <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+                <ScalarProperty Name="AmountArr" ColumnName="AmountArr" />
+                <ScalarProperty Name="VolumeArr" ColumnName="VolumeArr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="WarehouseModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="IDEmployee" ColumnName="IDEmployee" />
+                <ScalarProperty Name="SurnameEmp" ColumnName="SurnameEmp" />
+                <ScalarProperty Name="NameEmp" ColumnName="NameEmp" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="PostEmp" ColumnName="PostEmp" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="AdressEmp" ColumnName="AdressEmp" />
+                <ScalarProperty Name="PhoneEmp" ColumnName="PhoneEmp" />
+                <ScalarProperty Name="EmailEmp" ColumnName="EmailEmp" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ordered">
+            <EntityTypeMapping TypeName="WarehouseModel.Ordered">
+              <MappingFragment StoreEntitySet="Ordered">
+                <ScalarProperty Name="IDOrdered" ColumnName="IDOrdered" />
+                <ScalarProperty Name="IDOrder" ColumnName="IDOrder" />
+                <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+                <ScalarProperty Name="AmountOrd" ColumnName="AmountOrd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="WarehouseModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="IDOrder" ColumnName="IDOrder" />
+                <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+                <ScalarProperty Name="IDEmloyee" ColumnName="IDEmloyee" />
+                <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
+                <ScalarProperty Name="RecipientName" ColumnName="RecipientName" />
+                <ScalarProperty Name="RecipientAdress" ColumnName="RecipientAdress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supliers">
+            <EntityTypeMapping TypeName="WarehouseModel.Supliers">
+              <MappingFragment StoreEntitySet="Supliers">
+                <ScalarProperty Name="IDSuplier" ColumnName="IDSuplier" />
+                <ScalarProperty Name="NameSup" ColumnName="NameSup" />
+                <ScalarProperty Name="ReferTo" ColumnName="ReferTo" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitToMeasure">
+            <EntityTypeMapping TypeName="WarehouseModel.UnitToMeasure">
+              <MappingFragment StoreEntitySet="UnitToMeasure">
+                <ScalarProperty Name="IDMeasure" ColumnName="IDMeasure" />
+                <ScalarProperty Name="NameMeasure" ColumnName="NameMeasure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

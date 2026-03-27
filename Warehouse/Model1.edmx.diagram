@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7f3657177d354ce5b19356276a325e49" Name="Diagram1">
+        <EntityTypeShape EntityType="WarehouseModel.Arrivals" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseModel.BuildMaterials" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseModel.Clients" Width="1.5" PointX="3.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseModel.ConsistArrival" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseModel.Employees" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseModel.Ordered" Width="1.5" PointX="8.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseModel.Orders" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseModel.Supliers" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WarehouseModel.UnitToMeasure" Width="1.5" PointX="3.75" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="WarehouseModel.FK_Arrivals_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseModel.FK_Arrivals_Supliers" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseModel.FK_ConsistArrival_Arrivals" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseModel.FK_BuildMaterials_UnitToMeasure" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseModel.FK_ConsistArrival_BuildMaterials" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseModel.FK_Ordered_BuildMaterials1" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseModel.FK_Orders_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseModel.FK_Orders_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="WarehouseModel.FK_Ordered_Orders" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

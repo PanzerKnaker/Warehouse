@@ -1,0 +1,86 @@
+﻿<Window x:Class="Warehouse2.ArrivalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Warehouse2"
+        mc:Ignorable="d"
+        Title="Окно поступления материалов" Height="594" Width="1350">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF5F4D11" Offset="1"/>
+                <GradientStop Color="#FFECC442"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <DataGrid x:Name="DGArrival" HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="1016" AutoGenerateColumns="False" SelectionChanged="DGArrival_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер поступления" Binding="{Binding NumberArrival}"/>
+                <DataGridTextColumn Header="Поступление принял" Binding="{Binding Employees.SurnameEmp}"/>
+                <DataGridTextColumn Header="Поставщик" Binding="{Binding Supliers.NameSup}"/>
+                <DataGridTextColumn Header="Дата поступления" Binding="{Binding ArrivalDate}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TabControl HorizontalAlignment="Left" Height="566" Margin="866,0,0,-3" VerticalAlignment="Top" Width="476">
+            <TabItem Header="Добавить" Margin="-2,-2,-100,-14" FontFamily="Arial" FontSize="16">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FFC1C1C1" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Margin="-16,-23,-2,-2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="68*"/>
+                        <RowDefinition Height="25*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF5F4D11" Offset="1"/>
+                            <GradientStop Color="#FFECC542" Offset="0.12"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <TextBox x:Name="TBNumArr" HorizontalAlignment="Left" Height="23" Margin="245,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <Label Content="Номер поступления" HorizontalAlignment="Left" Margin="29,79,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Поступление принял" HorizontalAlignment="Left" Margin="29,124,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Поставщик" HorizontalAlignment="Left" Margin="29,176,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.323,0.732" FontSize="18"/>
+                    <Label Content="Дата поступления" HorizontalAlignment="Left" Margin="29,228,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Button x:Name="BtAddArr" Content="Добавить запись" HorizontalAlignment="Left" Margin="49,42.327,0,0" VerticalAlignment="Top" Width="157"  Height="39" FontSize="18" Background="#FFBDB7B7" Click="BtAddArr_Click" Grid.Row="1"/>
+                    <ComboBox x:Name="CBAcceptArr" HorizontalAlignment="Left" Margin="245,126,0,0" VerticalAlignment="Top" Width="199" FontSize="20"/>
+                    <ComboBox x:Name="CBSuplierArr" HorizontalAlignment="Left" Margin="245,178,0,0" VerticalAlignment="Top" Width="199" FontSize="20"/>
+                    <DatePicker x:Name="DPDateArr" HorizontalAlignment="Left" Margin="245,227,0,0" VerticalAlignment="Top" Width="198" Height="32" FontSize="20"/>
+                    <Button x:Name="BtPechArr" Content="Печать" HorizontalAlignment="Left" Margin="286,40.327,0,0" VerticalAlignment="Top" Width="157"  Height="39" FontSize="18" Background="#FFBDB7B7" Grid.Row="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Изменить" Margin="190,0,-282,-16" FontSize="16">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF9B9B9B" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Margin="-18,-25,-3,-2">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF5F4D11" Offset="1"/>
+                            <GradientStop Color="#FFECC542" Offset="0.12"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Button x:Name="BTChangeArr" Content="Изменить запись" HorizontalAlignment="Left" Margin="48,464,0,0" VerticalAlignment="Top" Width="182" Height="47" FontFamily="Arial" FontSize="20" Background="#FFBBBBBB" Click="BTChangeArr_Click"/>
+                    <Button x:Name="BTDelArr" Content="Удалить запись" HorizontalAlignment="Left" Margin="272,464,0,0" VerticalAlignment="Top" Width="172" Height="47" Background="#FFB0B0B0" FontFamily="Arial" FontSize="20" Click="BTDelArr_Click" />
+                    <TextBox x:Name="TBNumArrEd" HorizontalAlignment="Left" Height="23" Margin="245,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <Label Content="Номер поступления" HorizontalAlignment="Left" Margin="29,79,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Поступление принял" HorizontalAlignment="Left" Margin="29,124,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Поставщик" HorizontalAlignment="Left" Margin="29,176,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.323,0.732" FontSize="18"/>
+                    <Label Content="Дата поступления" HorizontalAlignment="Left" Margin="29,228,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <ComboBox x:Name="CBAcceptArrEd" HorizontalAlignment="Left" Margin="245,126,0,0" VerticalAlignment="Top" Width="199" FontSize="20"/>
+                    <ComboBox x:Name="CBSuplierEd" HorizontalAlignment="Left" Margin="245,178,0,0" VerticalAlignment="Top" Width="199" FontSize="20"/>
+                    <DatePicker x:Name="DPDateArrEd" HorizontalAlignment="Left" Margin="246,228,0,0" VerticalAlignment="Top" Width="198" Height="34" FontSize="20"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="BTBackArr" Content="Назад" HorizontalAlignment="Left" Margin="28,524,0,0" VerticalAlignment="Top" Width="135" Height="32" FontFamily="Arial" FontSize="20" Background="#FFB9B7B7" Click="BTBackArr_Click" />
+        <Button x:Name="BTConsist" Content="Таблица состава поступлений" HorizontalAlignment="Left" Margin="494,524,0,0" VerticalAlignment="Top" Width="367" Height="32" FontFamily="Arial" FontSize="20" Background="#FFB9B7B7" Click="BTConsist_Click" />
+
+    </Grid>
+</Window>

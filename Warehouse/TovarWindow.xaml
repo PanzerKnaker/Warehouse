@@ -1,0 +1,86 @@
+﻿<Window x:Class="Warehouse2.TovarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Warehouse2"
+        mc:Ignorable="d"
+        Title="Окно строительных материалов" Height="594" Width="1350" ResizeMode="NoResize">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF5F4D11" Offset="1"/>
+                <GradientStop Color="#FFECC442"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <DataGrid x:Name="DGTovar" HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="1016" AutoGenerateColumns="False" SelectionChanged="DGTovar_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Артикул " Binding="{Binding ItemNumber}"/>
+                <DataGridTextColumn Header="Марка" Binding="{Binding Mark}"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding NameItem}"/>
+                <DataGridTextColumn Header="Еденица измерения" Binding="{Binding UnitToMeasure.NameMeasure}"/>
+                <DataGridTextColumn Header="Наличие на складе" Binding="{Binding OnWarehouse}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TabControl HorizontalAlignment="Left" Height="566" Margin="866,0,0,-3" VerticalAlignment="Top" Width="476">
+            <TabItem Header="Добавить" Margin="10,0,-112,-16" FontFamily="Arial" FontSize="16">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FFC1C1C1" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Margin="-16,-23,-2,-2">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF5F4D11" Offset="1"/>
+                            <GradientStop Color="#FFECC542" Offset="0.12"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <TextBox x:Name="TBNumTov" HorizontalAlignment="Left" Height="23" Margin="245,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBMarkTov" HorizontalAlignment="Left" Height="23" Margin="245,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBNameTov" HorizontalAlignment="Left" Height="23" Margin="245,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <Label Content="Артикул" HorizontalAlignment="Left" Margin="29,79,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Марка" HorizontalAlignment="Left" Margin="29,124,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Наименование" HorizontalAlignment="Left" Margin="29,176,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.323,0.732" FontSize="18"/>
+                    <Label Content="Еденица измерения" HorizontalAlignment="Left" Margin="29,228,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Наличие на складе" HorizontalAlignment="Left" Margin="29,280,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Button x:Name="BtAddTov" Content="Добавить запись" HorizontalAlignment="Left" Margin="173,456,0,0" VerticalAlignment="Top" Width="157"  Height="39" FontSize="18" Background="#FFBDB7B7" Click="BtAddTov_Click"/>
+                    <ComboBox x:Name="CBMeasure" HorizontalAlignment="Left" Margin="245,228,0,0" VerticalAlignment="Top" Width="199" FontSize="20" SelectedIndex="0"/>
+                    <CheckBox x:Name="ChekTovar" Content="" HorizontalAlignment="Left" Margin="245,288,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Изменить" Margin="0,0,-182,-16" FontSize="16" HorizontalAlignment="Right" Width="184">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF9B9B9B" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Margin="-18,-25,-3,-2">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF5F4D11" Offset="1"/>
+                            <GradientStop Color="#FFECC542" Offset="0.12"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Button x:Name="BTChangeTov" Content="Изменить запись" HorizontalAlignment="Left" Margin="48,464,0,0" VerticalAlignment="Top" Width="182" Height="47" FontFamily="Arial" FontSize="20" Background="#FFBBBBBB" Click="BTChangeTov_Click"/>
+                    <Button x:Name="TBDelTov" Content="Удалить запись" HorizontalAlignment="Left" Margin="272,464,0,0" VerticalAlignment="Top" Width="172" Height="47" Background="#FFB0B0B0" FontFamily="Arial" FontSize="20" Click="TBDelTov_Click" />
+                    <TextBox x:Name="TBNumTovEd" HorizontalAlignment="Left" Height="23" Margin="245,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBMarkTovEd" HorizontalAlignment="Left" Height="23" Margin="245,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <TextBox x:Name="TBNameTovEd" HorizontalAlignment="Left" Height="23" Margin="245,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontFamily="Arial" FontSize="20"/>
+                    <Label Content="Артикул" HorizontalAlignment="Left" Margin="29,79,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Марка" HorizontalAlignment="Left" Margin="29,124,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Наименование" HorizontalAlignment="Left" Margin="29,176,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.323,0.732" FontSize="18"/>
+                    <Label Content="Еденица измерения" HorizontalAlignment="Left" Margin="29,228,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label Content="Наличие на складе" HorizontalAlignment="Left" Margin="29,280,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <ComboBox x:Name="CBMeasureEd" HorizontalAlignment="Left" Margin="245,228,0,0" VerticalAlignment="Top" Width="199" FontSize="20" FontFamily="Arial"/>
+                    <CheckBox x:Name="ChekTovarEd" Content="" HorizontalAlignment="Left" Margin="245,288,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="BTBackTov" Content="Назад" HorizontalAlignment="Left" Margin="28,524,0,0" VerticalAlignment="Top" Width="135" Height="32" FontFamily="Arial" FontSize="20" Background="#FFB9B7B7" Click="BTBackTov_Click" />
+        <Button x:Name="BTMesure" Content="Таблица видов едениц измерений" HorizontalAlignment="Left" Margin="494,524,0,0" VerticalAlignment="Top" Width="367" Height="32" FontFamily="Arial" FontSize="20" Background="#FFB9B7B7" Click="BTMesure_Click" />
+
+    </Grid>
+</Window>
